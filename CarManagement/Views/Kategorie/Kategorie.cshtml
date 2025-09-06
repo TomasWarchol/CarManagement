@@ -1,0 +1,59 @@
+﻿@using CarManagement.Models
+@model IEnumerable<Kategoria>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif
+    }
+
+    .my-div {
+        margin-bottom: 10px;
+    }
+</style>
+
+
+
+<h3>Lista kategorii</h3>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
+
+
+<a asp-action="Dodaj" class="btn btn-primary">Dodaj kategorię</a>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kategoria in Model)
+        {
+            <tr>
+                <td>@kategoria.Nazwa</td>
+                <td>
+                    <a asp-action="Usun" asp-route-id="@kategoria.Id" class="btn btn-danger">
+                        Usuń
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

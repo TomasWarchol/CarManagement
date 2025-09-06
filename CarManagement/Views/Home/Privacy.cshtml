@@ -1,0 +1,151 @@
+﻿@{
+    ViewData["Title"] = "System Floty – Regulamin i Polityka Prywatności";
+}
+<h1>@ViewData["Title"]</h1>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .muted {
+        color: #666;
+        font-size: .95em;
+    }
+</style>
+
+<header>
+    <h3>Regulamin i Polityka Prywatności Systemu Zarządzania Flotą</h3>
+</header>
+
+<hr />
+
+<h4>§1. Postanowienia ogólne</h4>
+<ol>
+    <li>Niniejszy regulamin (<strong>„Regulamin”</strong>) określa zasady korzystania z wewnętrznego systemu zarządzania flotą pojazdów (<strong>„System Floty”</strong>).</li>
+    <li>System Floty służy do prowadzenia <strong>spisu pojazdów będących na wyposażeniu firmy</strong>, ewidencji przypisań do pracowników, zarządzania danymi technicznymi, polisami ubezpieczeniowymi, badaniami technicznymi, serwisami, oponami, kartami paliwowymi, mandatami i zdarzeniami drogowymi.</li>
+    <li>Regulamin dotyczy wszystkich pracowników i współpracowników, którzy uzyskują dostęp do Systemu Floty.</li>
+    <li>Przed rozpoczęciem korzystania z Systemu Floty użytkownik ma obowiązek zapoznać się z Regulaminem i stosować do jego postanowień.</li>
+</ol>
+
+<h4>§2. Definicje</h4>
+<ol>
+    <li><strong>Pojazd służbowy</strong> – samochód osobowy, dostawczy lub inny środek transportu pozostający w dyspozycji Firmy.</li>
+    <li><strong>Użytkownik pojazdu (Kierowca)</strong> – osoba, której powierzono pojazd do użytkowania służbowego (i ewentualnie prywatnego, jeśli przewidują to przepisy wewnętrzne).</li>
+    <li><strong>Administrator Floty</strong> – osoba lub zespół odpowiedzialny za prowadzenie ewidencji floty, przypisania, serwisy, ubezpieczenia i rozliczenia.</li>
+    <li><strong>Administrator IT</strong> – osoba lub zespół odpowiedzialny za techniczne utrzymanie Systemu Floty.</li>
+    <li><strong>Portal flotowy</strong> – interfejs WWW umożliwiający dostęp do Systemu Floty.</li>
+</ol>
+
+<h4>§3. Zasady dostępu do Systemu</h4>
+
+<h4>1. Identyfikacja i uwierzytelnianie</h4>
+<ol>
+    <li>Każdy użytkownik otrzymuje indywidualne dane dostępowe (login i hasło); zalecane jest <strong>MFA</strong>.</li>
+    <li>Hasła muszą spełniać wymogi bezpieczeństwa zgodnie z polityką IT Firmy.</li>
+</ol>
+
+<h4>2. Korzystanie poza siedzibą Firmy</h4>
+<ol>
+    <li>Dostęp do Portalu flotowego możliwy jest z urządzeń służbowych i – jeśli dopuszczono – prywatnych, z zachowaniem wymogów bezpieczeństwa (HTTPS, brak udostępniania osobom trzecim).</li>
+    <li>Zabrania się logowania z urządzeń publicznych lub niezaufanych bez szczególnych środków ostrożności.</li>
+</ol>
+
+<h4>3. Powiadomienia systemowe</h4>
+<ol>
+    <li>System może wysyłać powiadomienia (e-mail/SMS) o zbliżających się przeglądach, końcu polis, przypisaniach, zdarzeniach itp.</li>
+    <li>Użytkownik jest zobowiązany monitorować skrzynkę przypisaną do konta.</li>
+</ol>
+
+<h4>§4. Ochrona danych i zakres przetwarzania</h4>
+
+<h4>1. Podstawa prawna i odpowiedzialność</h4>
+<ol>
+    <li>Dane są przetwarzane zgodnie z RODO; Administratorem Danych Osobowych jest Pracodawca.</li>
+</ol>
+
+<h4>2. Kategorie danych</h4>
+<ol>
+    <li><strong>Dane pojazdu:</strong> marka, model, VIN, nr rejestracyjny, rok produkcji, typ nadwozia, pojemność/napęd, przebieg, stan wyposażenia (np. zimowe/letnie opony), terminy: przeglądy, ubezpieczenia, gwarancje.</li>
+    <li><strong>Dane przypisania:</strong> imię i nazwisko kierowcy, dział, stanowisko, okres powierzenia, uprawnienia (kategoria prawa jazdy, data ważności), oświadczenia.</li>
+    <li><strong>Dane eksploatacyjne:</strong> tankowania (karty paliwowe), serwisy/naprawy, szkody, mandaty; opcjonalnie <strong>dane lokalizacyjne/telematyczne</strong> (jeśli wdrożono) w celu zapewnienia bezpieczeństwa i rozliczalności.</li>
+</ol>
+
+<h4>3. Prawa osób i retencja</h4>
+<ol>
+    <li>Użytkownik ma prawo dostępu do swoich danych i ich sprostowania w granicach przepisów.</li>
+    <li>Okresy przechowywania danych ustala się zgodnie z przepisami i potrzebą rozliczalności (m.in. podatkowo-ubezpieczeniową i BHP).</li>
+</ol>
+
+<h4>§5. Rejestry prowadzone w Systemie Floty</h4>
+<ol>
+    <li><strong>Spis pojazdów</strong> (dane identyfikacyjne i techniczne, status, lokalizacja).</li>
+    <li><strong>Przypisania pojazd–użytkownik</strong> (historia powierzania, uprawnienia, protokoły zdawczo-odbiorcze).</li>
+    <li><strong>Ubezpieczenia i polisy</strong> (OC/AC/NW/Assistance, okresy, franszyzy, zgłoszenia szkód).</li>
+    <li><strong>Serwisy, badania techniczne i opony</strong> (terminy, koszty, warsztaty, komplet opon).</li>
+    <li><strong>Karty paliwowe i tankowania</strong> (numery kart, PIN, limity, zestawienia).</li>
+    <li><strong>Mandaty, opłaty drogowe, e-TOLL/winiety</strong> (rozliczenie, odpowiedzialność).</li>
+    <li><strong>Wyposażenie dodatkowe</strong> (np. gaśnica, apteczka, bagażniki, GPS).</li>
+</ol>
+
+<h4>§6. Obowiązki użytkownika pojazdu</h4>
+<ol>
+    <li>Korzystać z pojazdu zgodnie z prawem i przeznaczeniem; dbać o stan techniczny i czystość; zgłaszać usterki niezwłocznie Administratorowi Floty.</li>
+    <li>Nie udostępniać pojazdu osobom nieuprawnionym; kluczyki i karta paliwowa muszą być zabezpieczone.</li>
+    <li>Przestrzegać terminów przeglądów/serwisów wskazanych w Systemie Floty.</li>
+    <li>Tankować zgodnie z zaleceniami producenta; rozliczać transakcje zgodnie z procedurą (np. skan paragonu/faktury, stan licznika).</li>
+    <li>W razie zdarzenia drogowego postępować według instrukcji (assistance, policja, dokumentacja zdjęciowa, zgłoszenie szkody w Systemie).</li>
+    <li>Mandaty wynikające z naruszeń przepisów ruchu drogowego co do zasady ponosi kierowca, chyba że przepisy lub umowy stanowią inaczej.</li>
+    <li>Jazdy prywatne – tylko jeśli dopuszczone w regulacjach wewnętrznych i na warunkach w nich określonych.</li>
+</ol>
+
+<h4>§7. Obowiązki Administratora Floty</h4>
+<ol>
+    <li>Prowadzić i aktualizować rejestry, przypisania, terminy przeglądów i polis; zapewniać kompletność danych technicznych.</li>
+    <li>Koordynować serwisy, wymianę opon, naprawy; nadzorować rozliczenia kosztów i zużycia paliwa.</li>
+    <li>Zapewniać wsparcie użytkownikom, publikować instrukcje i procedury.</li>
+</ol>
+
+<h4>§8. Procedury bezpieczeństwa</h4>
+<ol>
+    <li>Stosować zasadę najmniejszych uprawnień w Systemie Floty; dostęp wyłącznie do niezbędnych modułów.</li>
+    <li>Dane lokalizacyjne/telematyczne – jeśli są przetwarzane – wykorzystuje się wyłącznie do celów bezpieczeństwa, rozliczalności i organizacji pracy.</li>
+    <li>Zgubienie kluczy/karty paliwowej lub podejrzenie nadużyć należy niezwłocznie zgłosić Administratorowi Floty i IT.</li>
+</ol>
+
+<h4>§9. Incydenty i naruszenia</h4>
+<ol>
+    <li>Incydenty bezpieczeństwa (kradzież, włamanie, wyciek danych) zgłaszać Administratorowi IT i – jeśli dotyczy danych osobowych – IOD; Firma realizuje obowiązki notyfikacyjne (w tym do UODO) zgodnie z RODO w terminie 72 godzin, jeśli to wymagane.</li>
+    <li>Wypadki i szkody komunikacyjne rejestrowane są w Systemie i obsługiwane zgodnie z procedurą ubezpieczeniową.</li>
+</ol>
+
+<h4>§10. Konsekwencje nieprzestrzegania Regulaminu</h4>
+<ol>
+    <li>Naruszenia mogą skutkować odpowiedzialnością porządkową i/lub materialną w granicach prawa.</li>
+    <li>W przypadku poważnych naruszeń możliwe jest ograniczenie lub cofnięcie dostępu do Systemu Floty i pojazdów.</li>
+</ol>
+
+<h4>§11. Postanowienia końcowe</h4>
+<ol>
+    <li>Regulamin wchodzi w życie z dniem ogłoszenia. Zmiany wymagają formy pisemnej/elektronicznej i są komunikowane użytkownikom.</li>
+    <li>W sprawach nieuregulowanych stosuje się właściwe przepisy prawa oraz regulaminy wewnętrzne Firmy.</li>
+</ol>
+
+<br />
+
+<br />
+<br />

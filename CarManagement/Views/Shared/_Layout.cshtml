@@ -1,0 +1,136 @@
+﻿﻿
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body, h1, h2, h3, h4, h5 {
+            font-family: "Raleway", sans-serif
+        }
+
+        .my-div {
+            margin-bottom: 10px;
+        }
+    </style>
+
+
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - CarManagement</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CarManagement.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CarManagement</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Strona główna</a>
+                        </li>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Wolne" asp-action="Index">Weź wolne</a>
+                            </li>
+
+
+                            var uprawnienia = User.FindFirst("Uprawnienia")?.Value;
+
+                            if (uprawnienia == "1" || uprawnienia == "2")
+                            {
+
+
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Urlopy" asp-action="Index">Urlopy</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Kategorie" asp-action="Index">Kategorie</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Pracownicy" asp-action="Index">Pracownicy</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Wracanie" asp-action="Wracanie">Zatwierdzanie</a>
+                                </li>
+
+                            }
+
+                            if (uprawnienia == "1")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Uzytkownicy" asp-action="Uzytkownicy">Użytkownicy</a>
+                                </li>
+                            }
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Zasady prywatności</a>
+                        </li>
+
+
+
+                        
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                            <li class="nav-item" style="margin-left:auto; display: flex; justify-content: flex-end; padding: 0 5px;">
+                                <span class="nav-link text-dark" >
+                                    Zalogowano jako @User.FindFirst("Imie")?.Value @User.FindFirst("Nazwisko")?.Value
+                                </span>
+                            </li>
+                            <li class="nav-item" style="display: flex; justify-content: flex-end; padding: 0 5px;">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Logowanie" asp-action="Wyloguj">Wyloguj</a>
+                            </li>
+                            }
+                            else
+                            {
+                            <li class="nav-item" style="margin-left:auto; display: flex; justify-content: flex-end; padding: 0 5px;">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Logowanie" asp-action="Logowanie">Logowanie</a>
+                            </li>
+                            <li class="nav-item" style="display: flex; justify-content: flex-end; padding: 0 5px;">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Rejestracja" asp-action="Rejestracja">Rejestracja</a>
+                            </li>
+                            }
+                      
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - CarManagement - <a asp-area="" asp-controller="Home" asp-action="Privacy">Zasady prywatności</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

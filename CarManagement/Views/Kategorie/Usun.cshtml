@@ -1,0 +1,26 @@
+﻿@using CarManagement.Models
+@model Kategoria
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif
+    }
+
+    .my-div {
+        margin-bottom: 10px;
+    }
+</style>
+
+
+<h3>Potwierdź usunięcie kategorii</h3>
+
+<p>Czy na pewno chcesz usunąć kategorię: <strong>@Model.Nazwa</strong>?</p>
+
+<form asp-action="UsunPotwierdzenie" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Usuń</button>
+    <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+</form>
