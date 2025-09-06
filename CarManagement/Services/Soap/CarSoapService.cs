@@ -3,7 +3,7 @@
 
 namespace CarManagement.Services.Soap
 {
-    public class HRSoapService : IHRSoapService
+    public class CarSoapService : ICarSoapService
     {
         public string Ping() => "Działa";
     }

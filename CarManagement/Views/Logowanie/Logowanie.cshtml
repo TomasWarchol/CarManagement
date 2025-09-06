@@ -1,0 +1,185 @@
+﻿@model CarManagement.Models.LogowanieViewModel
+@{
+    ViewData["Title"] = "Zaloguj";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Inter font -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+
+<style>
+    :root {
+        --accent: #2563eb;
+        --text: #0f172a;
+        --muted: #64748b;
+        --border: #e5e7eb;
+    }
+
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--text);
+    }
+
+    .my-div {
+        margin-bottom: 10px;
+    }
+
+    /* minimalist helpers */
+    a {
+        color: var(--accent);
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    .text-muted {
+        color: var(--muted) !important;
+    }
+
+    /* inputs & button */
+    .form-control {
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: .5rem;
+        padding: .6rem .8rem;
+        font-size: 1rem;
+        background-color: #fff;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 .2rem rgba(37,99,235,.15);
+        }
+
+    .btn-primary {
+        background: var(--accent);
+        border: none;
+        color: #fff;
+        padding: .65rem 1rem;
+        border-radius: .5rem;
+        font-weight: 600;
+        width: 100%;
+    }
+
+        .btn-primary:hover {
+            filter: brightness(1.05);
+        }
+
+    /* simple layout if Bootstrap grid not loaded */
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    .col-md-4 {
+        flex: 1 1 320px;
+        max-width: 520px;
+    }
+
+    .col-md-6 {
+        flex: 1 1 420px;
+    }
+
+    .col-md-offset-2 {
+    }
+    /* noop if no Bootstrap */
+
+    /* tidy spacing */
+    form hr, section hr {
+        border: 0;
+        border-top: 1px solid var(--border);
+        margin: .75rem 0 1rem;
+    }
+
+    .mb-3 {
+        margin-bottom: 1rem;
+    }
+
+    .w-100 {
+        width: 100%;
+    }
+
+    .form-check {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+    }
+
+    .form-check-input {
+        width: 1.1rem;
+        height: 1.1rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: var(--text);
+    }
+
+    .text-danger {
+        color: #b91c1c;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post" asp-action="Logowanie">
+                <h3>Zaloguj się do Systemu Zarządzania Flotą</h3>
+                <hr />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">E-mail służbowy</label>
+                    <input asp-for="Email" class="form-control" autocomplete="username" placeholder="imie.nazwisko@firma.pl" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Haslo" class="form-label">Hasło</label>
+                    <input asp-for="Haslo" type="password" class="form-control" autocomplete="current-password" placeholder="••••••••" />
+                    <span asp-validation-for="Haslo" class="text-danger"></span>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label asp-for="RememberMe" class="form-check-label">Zapamiętaj mnie na tym urządzeniu</label>
+                </div>
+
+                <button type="submit" class="btn-primary">Zaloguj</button>
+
+                <div class="my-div" style="margin-top:12px;">
+                    <a asp-action="Rejestracja" asp-controller="Rejestracja">Załóż konto flotowe</a>
+                    &nbsp;•&nbsp;
+                    <a asp-action="ZapomnianeHaslo" asp-controller="Logowanie">Nie pamiętasz hasła?</a>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3>Witaj w Systemie Zarządzania Flotą</h3>
+            <hr />
+            <p class="text-muted">To wewnętrzna aplikacja do obsługi firmowych pojazdów. Po zalogowaniu możesz:</p>
+            <ul class="text-muted">
+                <li>sprawdzić przydzielone auta i historię przypisań,</li>
+                <li>podejrzeć dane techniczne (VIN, przebieg, typ napędu, wyposażenie),</li>
+                <li>zobaczyć terminy przeglądów oraz polis OC/AC/NW,</li>
+                <li>zgłosić usterkę, wypadek lub zaplanować serwis,</li>
+                <li>rozliczyć tankowania i karty paliwowe oraz włączyć powiadomienia.</li>
+            </ul>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

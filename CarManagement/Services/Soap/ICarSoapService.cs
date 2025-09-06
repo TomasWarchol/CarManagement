@@ -3,7 +3,7 @@
 namespace CarManagement.Services.Soap
 {
     [ServiceContract]
-    public interface IHRSoapService
+    public interface ICarSoapService
     {
         [OperationContract]
         string Ping();

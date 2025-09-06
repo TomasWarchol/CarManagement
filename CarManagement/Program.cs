@@ -68,7 +68,7 @@ builder.Services.AddAuthorization(options =>
 
 // SOAP
 builder.Services.AddSoapCore();
-builder.Services.AddSingleton<IHRSoapService, HRSoapService>();
+builder.Services.AddSingleton<ICarSoapService, CarSoapService>();
 
 var app = builder.Build();
 
@@ -92,7 +92,7 @@ app.UseAuthorization();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseSoapEndpoint<IHRSoapService>("/soap", new SoapEncoderOptions());
+app.UseSoapEndpoint<ICarSoapService>("/soap", new SoapEncoderOptions());
 
 app.MapControllerRoute(
     name: "default",

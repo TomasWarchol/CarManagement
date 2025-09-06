@@ -15,24 +15,26 @@ public class JwtGenerator : IJwtGenerator
         key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["API:Secret"] ?? throw new InvalidOperationException("API:Secret configuration is missing.")));
     }
 
-    public string CreateToken(PracownikAdministracyjny user)
+    public (string token, DateTime expiresAtUtc) CreateToken(Kierowca user, IEnumerable<Claim> claims)
     {
-        var claims = new List<Claim> {
-                new Claim(JwtRegisteredClaimNames.NameId, user.Email)
-            };
+        var allClaims = new List<Claim>(claims)
+        {
+            new Claim(JwtRegisteredClaimNames.NameId, user.Email)
+        };
 
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+        var expires = DateTime.UtcNow.AddDays(15);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
-            Subject = new ClaimsIdentity(claims),
-            Expires = DateTime.Now.AddDays(15),
+            Subject = new ClaimsIdentity(allClaims),
+            Expires = expires,
             SigningCredentials = creds,
-            Issuer = "HRSystem",
-            Audience = "HRSystemClient"
+            Issuer = "CarSystem",
+            Audience = "CarSystemClient"
         };
         var tokenHandler = new JwtSecurityTokenHandler();
         var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
+        return (tokenHandler.WriteToken(token), expires);
     }
 
     // public RefreshToken GenerateRefreshToken()
