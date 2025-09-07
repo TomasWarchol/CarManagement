@@ -7,13 +7,13 @@ public class RegisterViewModel
     [Required(ErrorMessage = "Proszę podać imię")]
     [Display(Name = "Imię")]
     [StringLength(100, MinimumLength = 2, ErrorMessage = "Imię musi mieć od 2 do 100 znaków")]
-    [RegularExpression(@"^[\p{L}\p{M}'\- ]+$", ErrorMessage = "Imię może zawierać tylko litery, spacje, myślnik i apostrof")]
+    [RegularExpression(@"^[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż' -]+$", ErrorMessage = "Imię może zawierać tylko litery, spacje, myślnik i apostrof")]
     public string Imie { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Proszę podać nazwisko")]
     [Display(Name = "Nazwisko")]
     [StringLength(100, MinimumLength = 2, ErrorMessage = "Nazwisko musi mieć od 2 do 100 znaków")]
-    [RegularExpression(@"^[\p{L}\p{M}'\- ]+$", ErrorMessage = "Nazwisko może zawierać tylko litery, spacje, myślnik i apostrof")]
+    [RegularExpression(@"^[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż' -]+$", ErrorMessage = "Nazwisko może zawierać tylko litery, spacje, myślnik i apostrof")]
     public string Nazwisko { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Proszę podać e-mail")]

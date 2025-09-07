@@ -1,0 +1,52 @@
+@model CarManagement.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Rejestracja nowego konta";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p class="text-muted">Do³¹cz do systemu, aby zarz¹dzaæ pojazdami i przypisaniami.</p>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Rejestracja" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            
+            <div class="mb-3">
+                <label asp-for="Imie" class="form-label"></label>
+                <input asp-for="Imie" class="form-control" />
+                <span asp-validation-for="Imie" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Nazwisko" class="form-label"></label>
+                <input asp-for="Nazwisko" class="form-control" />
+                <span asp-validation-for="Nazwisko" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" placeholder="imie.nazwisko@firma.pl" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Haslo" class="form-label"></label>
+                <input asp-for="Haslo" type="password" class="form-control" />
+                <span asp-validation-for="Haslo" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ConfirmHaslo" class="form-label"></label>
+                <input asp-for="ConfirmHaslo" type="password" class="form-control" />
+                <span asp-validation-for="ConfirmHaslo" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Zarejestruj siê</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

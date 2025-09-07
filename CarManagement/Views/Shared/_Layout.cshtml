@@ -1,5 +1,4 @@
-﻿﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 
@@ -42,11 +41,13 @@
 
                         @if (User.Identity.IsAuthenticated)
                         {
-
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Wolne" asp-action="Index">Weź wolne</a>
                             </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Pojazdy" asp-action="Index">Zarządzaj Flotą</a>
+                            </li>
 
                             var uprawnienia = User.FindFirst("Uprawnienia")?.Value;
 
