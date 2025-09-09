@@ -1,0 +1,10 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: hrsystem_db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong!Passw0rd
+    ports:
+      - "1433:1433"
+    restart: unless-stopped

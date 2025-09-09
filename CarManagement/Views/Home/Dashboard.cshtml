@@ -1,0 +1,59 @@
+@model CarManagementApp.Models.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard floty";
+}
+<h2>Dashboard</h2>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card shadow-sm p-3">
+            <h5>Aktywne pojazdy</h5>
+            <strong>@Model.LiczbaAktywnychPojazdow</strong>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm p-3">
+            <h5>Polisy < 30 dni</h5>
+            <strong>@Model.WygasajacePolisy30Dni</strong>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm p-3">
+            <h5>Serwisy < 30 dni</h5>
+            <strong>@Model.NadchodzaceSerwisy30Dni</strong>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm p-3">
+            <h5>Kierowcy</h5>
+            <strong>@Model.LiczbaKierowcow</strong>
+        </div>
+    </div>
+</div>
+
+<h4>Nadchodz¹ce terminy</h4>
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Typ</th>
+            <th>Pojazd</th>
+            <th>Opis</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var t in Model.ZblizajaceTerminy)
+    {
+        <tr>
+            <td>@t.Data.ToString("yyyy-MM-dd")</td>
+            <td>@t.Typ</td>
+            <td>
+                <a asp-controller="Pojazdy" asp-action="Details" asp-route-id="@t.PojazdId">
+                    @t.NumerRejestracyjny
+                </a>
+            </td>
+            <td>@t.Opis</td>
+        </tr>
+    }
+    </tbody>
+</table>

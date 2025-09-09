@@ -1,4 +1,4 @@
-﻿namespace CarManagement.Models
+﻿namespace CarManagementApp.Models
 {
     public class PrzypisaniePojazdu
     {

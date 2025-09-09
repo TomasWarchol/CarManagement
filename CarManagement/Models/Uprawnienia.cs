@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CarManagement.Models
+namespace CarManagementApp.Models
 {
     public class Uprawnienia
     {

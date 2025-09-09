@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace CarManagement.Models
+namespace CarManagementApp.Models
 {
     public class ErrorViewModel
     {

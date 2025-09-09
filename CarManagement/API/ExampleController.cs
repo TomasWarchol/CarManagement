@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CarManagement.API;
+namespace CarManagementApp.API;
 
 [ApiController]
 [Route("api/[controller]")]

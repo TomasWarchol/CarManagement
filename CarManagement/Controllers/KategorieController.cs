@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CarManagement.Models;
+using CarManagementApp.Models;
 
-namespace CarManagement.Controllers
+namespace CarManagementApp.Controllers
 {
     // [Authorize(Roles = "FleetManager")] // włącz, jeśli masz role
     public class KategorieController : Controller

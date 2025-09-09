@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using CarManagement.Models;
-using CarManagement.Services.JWT;
+using CarManagementApp.Models;
+using CarManagementApp.Services.JWT;
 
-namespace CarManagement.API;
+namespace CarManagementApp.API;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -29,16 +29,12 @@ public class LoginController(
     [ProducesResponseType(typeof(TokenResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<TokenResponse>> Login([FromBody] LogowanieModel model, CancellationToken ct)
+    public async Task<ActionResult<TokenResponse>> Login([FromBody] CarManagementApp.Models.LogowanieModel model, CancellationToken ct)
     {
         if (!ModelState.IsValid)
             return ValidationProblem(ModelState);
 
-        // Zamień linię:
-        // var email = model.Email.Trim().ToLowerInvariant();
-
-        // Na:
-        var email = (model.Email as string)?.Trim().ToLowerInvariant() ?? string.Empty;
+        var email = model.Email.Trim().ToLowerInvariant();
 
         var user = await context.Kierowcy
             .Include(u => u.Uprawnienia)

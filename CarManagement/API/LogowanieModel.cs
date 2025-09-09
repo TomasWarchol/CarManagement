@@ -1,4 +1,4 @@
-﻿namespace CarManagement.API
+﻿namespace CarManagementApp.API
 {
     public class LogowanieModel
     {

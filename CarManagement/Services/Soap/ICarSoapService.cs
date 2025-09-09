@@ -1,6 +1,6 @@
 ﻿using System.ServiceModel;
 
-namespace CarManagement.Services.Soap
+namespace CarManagementApp.Services.Soap
 {
     [ServiceContract]
     public interface ICarSoapService

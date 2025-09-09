@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SoapCore;
 using System.Text;
-using CarManagement.Models;
-using CarManagement.Services.JWT;
-using CarManagement.Services.Soap;
+using CarManagementApp.Models;
+using CarManagementApp.Services.JWT;
+using CarManagementApp.Services.Soap;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +17,7 @@ Console.WriteLine($"Current configuration: {builder.Environment.EnvironmentName}
 
 // Konfiguracja baz danych
 builder.Services.AddDbContext<CarManagementContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SystemHRConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CarManagementDBConnection")));
 
 // Rejestracja usug
 builder.Services.AddControllersWithViews();
@@ -50,8 +50,8 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = "HRSystem",
-        ValidAudience = "HRSystemClient",
+        ValidIssuer = builder.Configuration["API:Issuer"],
+        ValidAudience = builder.Configuration["API:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret))
     };
 });
@@ -99,3 +99,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+public partial class Program { }

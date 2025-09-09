@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CarManagement.Models
+namespace CarManagementApp.Models
 {
     public class PracownikAdministracyjny
     {

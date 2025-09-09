@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 
-namespace CarManagement.Services.Soap
+namespace CarManagementApp.Services.Soap
 {
     public class CarSoapService : ICarSoapService
     {

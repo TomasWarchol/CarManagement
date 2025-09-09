@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using CarManagement.Models;
+using CarManagementApp.Models;
 
-namespace CarManagement.Controllers
+namespace CarManagementApp.Controllers
 {
     [AllowAnonymous]
     public class LogowanieController : Controller

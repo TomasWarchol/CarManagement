@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using CarManagement.Models;
+using CarManagementApp.Models;
 
-namespace CarManagement.Controllers
+namespace CarManagementApp.Controllers
 {
     [AllowAnonymous]
     public class RejestracjaController : Controller
