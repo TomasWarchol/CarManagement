@@ -15,9 +15,14 @@ public class JwtGenerator : IJwtGenerator
         "dotnet user-secrets set \"API:Secret\" \"<random key, at least 64 characters>\" --project CarManagement";
 
     private readonly SymmetricSecurityKey key;
+    private readonly string? issuer;
+    private readonly string? audience;
     public JwtGenerator(IConfiguration config)
     {
         key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["API:Secret"] ?? throw new InvalidOperationException(MissingSecretMessage)));
+        // Must match the values validated by the JwtBearer handler in Program.cs.
+        issuer = config["API:Issuer"];
+        audience = config["API:Audience"];
     }
 
     public (string token, DateTimeOffset expiresAtUtc) CreateToken(Kierowca user, IEnumerable<Claim> claims)
@@ -34,8 +39,8 @@ public class JwtGenerator : IJwtGenerator
             Subject = new ClaimsIdentity(allClaims),
             Expires = expires.UtcDateTime,
             SigningCredentials = creds,
-            Issuer = "CarSystem",
-            Audience = "CarSystemClient"
+            Issuer = issuer,
+            Audience = audience
         };
         var tokenHandler = new JwtSecurityTokenHandler();
         var token = tokenHandler.CreateToken(tokenDescriptor);
