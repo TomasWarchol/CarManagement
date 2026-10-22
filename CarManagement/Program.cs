@@ -42,7 +42,7 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
 {
-    var secret = builder.Configuration["API:Secret"] ?? throw new InvalidOperationException("API:Secret configuration is missing.");
+    var secret = builder.Configuration["API:Secret"] ?? throw new InvalidOperationException(JwtGenerator.MissingSecretMessage);
 
     options.TokenValidationParameters = new TokenValidationParameters
     {

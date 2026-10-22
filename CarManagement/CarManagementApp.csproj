@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>$(CarManagement)</AssemblyName>
     <RootNamespace>$(MSBuildProjectName.Replace(" ", "CarManagement"))</RootNamespace>
+    <UserSecretsId>bcd7386c-8740-414e-ad4d-2e6b4fad3720</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

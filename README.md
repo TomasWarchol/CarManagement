@@ -1,24 +1,24 @@
-# CarManagement (System Zarz¹dzania Flot¹)
+# CarManagement (System ZarzÄ…dzania FlotÄ…)
 
-Nowoczesna aplikacja (.NET 8 / C# 12 / Razor Pages + API) do ewidencji i zarz¹dzania flot¹ pojazdów: pojazdy, przypisania kierowców, polisy, serwis, tankowania, raporty oraz uwierzytelnianie z wykorzystaniem JWT.
+Nowoczesna aplikacja (.NET 8 / C# 12 / Razor Pages + API) do ewidencji i zarzÄ…dzania flotÄ… pojazdÃ³w: pojazdy, przypisania kierowcÃ³w, polisy, serwis, tankowania, raporty oraz uwierzytelnianie z wykorzystaniem JWT.
 
 
-Tomasz Warcho³ 15229 lab3/2/AD
+Autor: Tomasz WarchoÅ‚
 
-## Spis treœci
+## Spis treÅ›ci
 1. Opis i cel
 2. Stos technologiczny
-3. Kluczowe funkcjonalnoœci
-4. Struktura (skrót)
+3. Kluczowe funkcjonalnoÅ›ci
+4. Struktura (skrÃ³t)
 5. Instalacja i uruchomienie
 6. Konfiguracja bazy danych (skrypt)
 7. Testy
-8. Bezpieczeñstwo
-9. Dalszy rozwój
+8. BezpieczeÅ„stwo
+9. Dalszy rozwÃ³j
 10. Licencja / Uwagi
 
 ## 1. Opis i cel
-Celem systemu jest centralizacja danych floty oraz udostêpnienie interfejsu WWW (Razor Pages / MVC Controllers) i prostych endpointów API (np. logowanie) do integracji. System pozwala œledziæ historiê eksploatacji pojazdów oraz podstawowe operacje administracyjne.
+Celem systemu jest centralizacja danych floty oraz udostÄ™pnienie interfejsu WWW (Razor Pages / MVC Controllers) i prostych endpointÃ³w API (np. logowanie) do integracji. System pozwala Å›ledziÄ‡ historiÄ™ eksploatacji pojazdÃ³w oraz podstawowe operacje administracyjne.
 
 ## 2. Stos technologiczny
 - .NET 8, C# 12
@@ -27,46 +27,53 @@ Celem systemu jest centralizacja danych floty oraz udostêpnienie interfejsu WWW 
 - JWT (autoryzacja)
 - SQL Server
 - xUnit + FluentAssertions (testy)
-- Minimalne skrypty seeda SQL (poni¿ej)
+- Minimalne skrypty seeda SQL (poniÅ¼ej)
 
-## 3. Kluczowe funkcjonalnoœci (aktualny zakres)
-- Uwierzytelnianie (LoginController + generowanie tokenów JWT)
-- Zarz¹dzanie pojazdami (podstawowe CRUD)
+## 3. Kluczowe funkcjonalnoÅ›ci (aktualny zakres)
+- Uwierzytelnianie (LoginController + generowanie tokenÃ³w JWT)
+- ZarzÄ…dzanie pojazdami (podstawowe CRUD)
 - Kategorie / Role / Uprawnienia (modele bazowe)
-- Przypisania pojazd–kierowca z zakresem dat
+- Przypisania pojazdâ€“kierowca z zakresem dat
 - Polisy ubezpieczeniowe, serwis, tankowania (ewidencja operacyjna)
-- Widoki Razor (Dashboard, szczegó³y pojazdu, formularze)
-- Warstwa us³ug (JWT, integracja SOAP – szkielet)
+- Widoki Razor (Dashboard, szczegÃ³Å‚y pojazdu, formularze)
+- Warstwa usÅ‚ug (JWT, integracja SOAP â€“ szkielet)
 - Testy integracyjne endpointu logowania
 
-## 4. Struktura (skrót)
-- CarManagement/Program.cs – konfiguracja hosta
-- CarManagement/Models – encje + ViewModel-e
-- CarManagement/Services/JWT – generowanie tokenów
-- CarManagement/API – kontrolery API (logowanie, przyk³ady)
-- CarManagement/Controllers – kontrolery MVC/Razor
-- CarManagement/Views – widoki Razor
-- Testy/ – testy jednostkowe i integracyjne (xUnit)
+## 4. Struktura (skrÃ³t)
+- CarManagement/Program.cs â€“ konfiguracja hosta
+- CarManagement/Models â€“ encje + ViewModel-e
+- CarManagement/Services/JWT â€“ generowanie tokenÃ³w
+- CarManagement/API â€“ kontrolery API (logowanie, przykÅ‚ady)
+- CarManagement/Controllers â€“ kontrolery MVC/Razor
+- CarManagement/Views â€“ widoki Razor
+- Testy/ â€“ testy jednostkowe i integracyjne (xUnit)
 
 ## 5. Instalacja i uruchomienie
 Wymagania:
 - .NET 8 SDK
-- SQL Server (LocalDB lub pe³ny)
-- Visual Studio (uruchom jako konfiguracjê CarManagement)
+- SQL Server (LocalDB lub peÅ‚ny)
+- Visual Studio (uruchom jako konfiguracjÄ™ CarManagement)
 
 Kroki:
 1. Sklonuj repozytorium:
    git clone https://github.com/TomasWarchol/CarManagement
-2. Utwórz bazê danych uruchamiaj¹c poni¿szy skrypt w SSMS (lub sqlcmd).
-3. Skonfiguruj connection string w pliku appsettings.json (CarManagement/appsettings.json) – sekcja ConnectionStrings.
-4. (Opcjonalnie) Jeœli u¿ywasz EF migracji — dodaj i zastosuj (o ile projekt je posiada):
+2. UtwÃ³rz bazÄ™ danych uruchamiajÄ…c poniÅ¼szy skrypt w SSMS (lub sqlcmd).
+3. Skonfiguruj connection string w pliku appsettings.json (CarManagement/appsettings.json) â€“ sekcja ConnectionStrings.
+4. Ustaw klucz podpisu tokenÃ³w JWT. Klucz nie jest przechowywany w repozytorium â€“ lokalnie trzymaj go w user-secrets:
+   ```powershell
+   # wygeneruj losowy klucz (64 bajty, Base64)
+   $bytes = New-Object byte[] 64; [Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($bytes)
+   dotnet user-secrets set "API:Secret" ([Convert]::ToBase64String($bytes)) --project CarManagement
+   ```
+   Na serwerze ustaw zmiennÄ… Å›rodowiskowÄ… `API__Secret` (lub uÅ¼yj Azure Key Vault).
+5. (Opcjonalnie) JeÅ›li uÅ¼ywasz EF migracji â€” dodaj i zastosuj (o ile projekt je posiada):
    dotnet ef database update
-5. Uruchom aplikacjê (F5 / __Debug__).
-6. Otwórz przegl¹darkê pod adresem z __Output__ / launchSettings (np. https://localhost:xxxx).
+6. Uruchom aplikacjÄ™ (F5 / __Debug__).
+7. OtwÃ³rz przeglÄ…darkÄ™ pod adresem z __Output__ / launchSettings (np. https://localhost:xxxx).
 
 ## 6. Konfiguracja bazy danych (skrypt)
 
--- Skrypt tworz¹cy bazê danych dla Systemu Zarz¹dzania Flot¹
+-- Skrypt tworzÄ…cy bazÄ™ danych dla Systemu ZarzÄ…dzania FlotÄ…
 -- Wersja: .NET 8, C# 12, zgodny z modelem EF Core
 
 USE MASTER;
@@ -179,41 +186,41 @@ CREATE TABLE Tankowanie (
     FOREIGN KEY (KartaPaliwowaId) REFERENCES KartaPaliwowa(Id)
 );
 
--- Przyk³adowe dane
+-- PrzykÅ‚adowe dane
 INSERT INTO Uprawnienia (Nazwa) VALUES ('Administrator'), ('Kierowca'), ('Pracownik');
 INSERT INTO KategoriaPojazdu (Nazwa) VALUES ('Osobowy'), ('Dostawczy'), ('SUV');
-INSERT INTO Kategoria (Nazwa) VALUES ('S³u¿bowy'), ('Prywatny');
+INSERT INTO Kategoria (Nazwa) VALUES ('SÅ‚uÅ¼bowy'), ('Prywatny');
 
--- Konto administratora (has³o: 'admin123' zahashowane przyk³adowo, dostosuj do produkcji!)
+-- Konto administratora (hasÅ‚o: 'admin123' zahashowane przykÅ‚adowo, dostosuj do produkcji!)
 INSERT INTO Kierowca (Email, HasloHash, Imie, Nazwisko, Id_Uprawnienia)
 VALUES ('admin@carfleet.local', 'AQAAAAIAAYagAAAAEJpQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQw==', 'Admin', 'Systemowy', 1);
 
--- Przyk³adowy pojazd
+-- PrzykÅ‚adowy pojazd
 INSERT INTO Pojazd (NumerRejestracyjny, VIN, Marka, Model, Rok, TypNapedu, PrzebiegKm, Status, KategoriaId)
 VALUES ('WX12345', '1HGCM82633A004352', 'Toyota', 'Corolla', 2022, 'Benzyna', 15000, 'Aktywny', 1);
 
--- Przyk³adowe przypisanie pojazdu
+-- PrzykÅ‚adowe przypisanie pojazdu
 INSERT INTO PrzypisaniePojazdu (PojazdId, KierowcaId, DataOd, DataDo, TrybUzytkowania)
-VALUES (1, 1, '2025-01-01', NULL, 'S³u¿bowy');
+VALUES (1, 1, '2025-01-01', NULL, 'SÅ‚uÅ¼bowy');
 
--- Przyk³adowa polisa
+-- PrzykÅ‚adowa polisa
 INSERT INTO PolisaUbezpieczeniowa (PojazdId, Typ, Numer, DataOd, DataDo)
 VALUES (1, 'OC', 'POL123456', '2025-01-01', '2026-01-01');
 
--- Przyk³adowy serwis
+-- PrzykÅ‚adowy serwis
 INSERT INTO SerwisPojazdu (PojazdId, Data, PrzebiegKm, Rodzaj, Koszt)
-VALUES (1, '2025-03-15', 16000, 'Przegl¹d', 500.00);
+VALUES (1, '2025-03-15', 16000, 'PrzeglÄ…d', 500.00);
 
--- Przyk³adowa karta paliwowa
+-- PrzykÅ‚adowa karta paliwowa
 INSERT INTO KartaPaliwowa (Numer, LimitMiesieczny, Aktywna, KierowcaId)
 VALUES ('CARD001', 1000.00, 1, 1);
 
--- Przyk³adowe tankowanie
+-- PrzykÅ‚adowe tankowanie
 INSERT INTO Tankowanie (PojazdId, KierowcaId, KartaPaliwowaId, Data, IloscLitrow, CenaZaLitr, Kwota, PrzebiegKm)
 VALUES (1, 1, 1, '2025-04-01', 40.5, 6.20, 251.10, 16500);
 
 ## 7. Testy
-Uruchamianie testów:
+Uruchamianie testÃ³w:
 - Visual Studio: __Test Explorer__
 - CLI:
   dotnet test
@@ -222,18 +229,19 @@ Zakres:
 - Testy integracyjne logowania (statusy HTTP, token JWT)
 - Testy generatora JWT
 
-## 8. Bezpieczeñstwo
-- Has³a przechowywane jako hash (sprawdŸ implementacjê – dopasuj do produkcji)
-- Tokeny JWT (typ Bearer) – konfiguracja w us³ugach
-- Zalecane: dodaæ odœwie¿anie tokenów, polityki ról, walidacjê wejœcia
+## 8. BezpieczeÅ„stwo
+- HasÅ‚a przechowywane jako hash (sprawdÅº implementacjÄ™ â€“ dopasuj do produkcji)
+- Tokeny JWT (typ Bearer) â€“ konfiguracja w usÅ‚ugach
+- Klucz podpisu JWT (`API:Secret`) poza repozytorium: user-secrets lokalnie, zmienna Å›rodowiskowa / Key Vault na serwerze
+- Zalecane: dodaÄ‡ odÅ›wieÅ¼anie tokenÃ³w, polityki rÃ³l, walidacjÄ™ wejÅ›cia
 
-## 9. Dalszy rozwój (propozycje)
+## 9. Dalszy rozwÃ³j (propozycje)
 - Audyt zmian (logi)
 - Paginated API dla list
 - Role-based UI
-- Eksport raportów (CSV / PDF)
-- Integracje z zewnêtrznymi systemami (SOAP/REST)
+- Eksport raportÃ³w (CSV / PDF)
+- Integracje z zewnÄ™trznymi systemami (SOAP/REST)
 
 ## 10. Licencja / Uwagi
-Projekt edukacyjny / demonstracyjny. Przed u¿yciem w œrodowisku produkcyjnym: wzmocnij bezpieczeñstwo, dodaj walidacje, logowanie b³êdów i testy wydajnoœciowe.
+Projekt edukacyjny / demonstracyjny. Przed uÅ¼yciem w Å›rodowisku produkcyjnym: wzmocnij bezpieczeÅ„stwo, dodaj walidacje, logowanie bÅ‚Ä™dÃ³w i testy wydajnoÅ›ciowe.
 
